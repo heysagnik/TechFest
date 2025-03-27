@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import classes from "./Navbar.module.css";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+
 import { FiMenu } from "react-icons/fi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { HashLink as Link } from "react-router-hash-link";
 import Logo from "../../assets/Logo.png";
 
-const Scroll = require("react-scroll");
+import * as Scroll from "react-scroll";
 
 const Navbar = () => {
   const Drop = Scroll.Link;
@@ -73,11 +74,21 @@ const Navbar = () => {
                 </Link>
               </Drop>
             </li>
-            <li className={classes.navLink}>
-              <Link to="/events" className={classes.homeLink}>
+            <Link to="/events">
+              <li className={`${classes.dropLink}`}>
                 Events
-              </Link>
-            </li>
+                <FontAwesomeIcon
+                  size="sm"
+                  style={{
+                    display: "inline-block",
+                    marginLeft: ".3rem",
+                    color: "white",
+                  }}
+                  icon={faArrowDown}
+                  fade
+                />
+              </li>
+            </Link>
             <li className={classes.navLink}>
               <Link to="/speakers" className={classes.homeLink}>
                 Speakers
@@ -155,27 +166,21 @@ const Navbar = () => {
                 </Link>
               </Drop>
             </li>
-            <li>
-                 <Link to="/events">
-                           <li
-                             className={`${classes.dropLink}`}
-                             // onClick={() => setDrop(!drop)}
-                           >
-                             {/* {drop ? <Dropdown click={() => setDrop(!drop)} /> : ""} */}
-                             Events
-                             <FontAwesomeIcon
-                               size="sm"
-                               style={{
-                                 display: "inline-block",
-                                 marginLeft: ".3rem",
-                                 color: "white",
-                               }}
-                               icon={faArrowDown}
-                               fade
-                             />
-                           </li>
-                         </Link>
-            </li>
+            <Link to="/events">
+              <li className={`${classes.mobLink}`}>
+                Events
+                <FontAwesomeIcon
+                  size="sm"
+                  style={{
+                    display: "inline-block",
+                    marginLeft: ".3rem",
+                    color: "white",
+                  }}
+                  icon={faArrowDown}
+                  fade
+                />
+              </li>
+            </Link>
             <li>
               <Link
                 onClick={() => setMobile(!mobile)}
